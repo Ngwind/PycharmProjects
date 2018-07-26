@@ -12,6 +12,8 @@ class Chinese(Person):
         print("我跑了", distance, "m--来自重写的run")
 
 # test
+
+
 wang = Chinese("wang", "王")
 wang.run(100)
 
