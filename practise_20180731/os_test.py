@@ -1,48 +1,65 @@
 import os
-import os.path
-import time
-
+import stat
 #  演示用的路径
 path = "aaa/bbb/ccc/ddd.py"
 
-#  exists函数判断path是否存在
-print(os.path.exists(path))
-print(os.path.exists("/aaa/bbb/ccc"))
+#  os.name表示当前系统名：
+print(os.name)
 
-# abspath函数返回path路径的绝对路径
-print(os.path.abspath(path))
+#  查看环境变量。environ是一个mapping类型对象，保存了所有环境变量。
+print(os.environ)
+#例如使用environ["homepath"]查看主目录名称
+print(os.environ['homepath'])
+print(os.environ['classpath'])
 
-# split函数将path拆分成dirname和basename,返回二元元组
-print(os.path.split(path))
+#  文件和目录类函数
 
-# dirname函数返回path的目录名
-print(os.path.dirname(path))
+#  1.access来判断对path的权限（存在F_OK、可读R_OK、可写W_OK、可执行X_OK）
+print(os.access(path, os.F_OK))
+print(os.access(path, os.R_OK))
+print(os.access(path, os.W_OK))
+print(os.access(path, os.X_OK))
 
-# filname函数返回path的文件名
-print(os.path.basename(path))
+#  2.chdir更改当前目录为path
+#  使用getcwd得到当前工作目录
+print(os.getcwd())
+os.chdir(path+"/../")
+print(os.getcwd())
 
-# getsize返回文件大小（以字节为单位）
-print(os.path.getsize(path))
+#  3.chmod更改
+#  虽然Windows支持 chmod()，但只能使用它设置文件的只读标志（通过 stat.S_IWRITE 和 stat.S_IREAD 常量或相应的整数值）。所有其他位被忽略。
+os.chdir("../../../")
+# os.chmod(path, 775)
+print(os.access(path, os.F_OK))
+print(os.access(path, os.R_OK))
+print(os.access(path, os.W_OK))
+print(os.access(path, os.X_OK))
 
-# getatime, getctime, getmtime三个函数分别返回文件的最后访问、创建、修改时间，path无效则抛出OSError
-# 可以使用time.gmtime()来以struct_time形式输出最近修改时间
-print(os.path.getatime(path))
-print(time.gmtime(os.path.getatime(path)))
-print(time.gmtime(os.path.getctime(path)))
-print(time.gmtime(os.path.getmtime(path)))
+#  chroot
+#  4.chown改变文件/文件夹的所有者/组
+#os.chown()
 
-# isabs,isfile,isdir,islink,ismount函数分别判断path是否为绝对路径，常规文件，文件夹，链接，挂载点
-print(os.path.isabs(path))
-print(os.path.isfile(path))
-print(os.path.isdir(path))
-print(os.path.islink(path))
-print(os.path.ismount(path))
+#  5.listdir展示path路径的文件
+print(os.listdir("./"))
 
-# commonpath函数返回paths参数中，所有路径序列中共有的最长的路径.如果 paths 即包含绝对路径又包含相对路径,或者 paths 为空将抛出ValueError.
-print(os.path.commonpath(["/aaa/bbb", "/aaa/bbb/ccc"]))
+#  6.mkdir新建一个文件夹。如果存在则会报错
+os.mkdir("test_mkdir", 775)
+print(os.listdir("./"))
 
-# commonprefix函数返回list中所有路径的前缀的最长前缀（逐个字符），如果list为空则返回空字串,建议使用commonpath
-print(os.path.commonprefix(["/aaa/bbb", "/aaa/bbb/ccc"]))
-print(os.path.commonprefix([""]))
-print(os.path.commonprefix(["/aaa/bbc", "/aaa/bbb/ccc"]))
+#  7.makedirs递归目录新建功能。
+os.makedirs("./kkk/fff/cc")
+
+#  8.rmdir删除空目录
+os.rmdir("test_mkdir")
+
+#  9.removedirs递归删除空目录
+os.removedirs("./kkk/fff/cc")
+
+#  10.rename重命名文件
+#os.rename(path, "eee.py")
+
+#  system执行一个系统命令
+os.system("ipconfig")
+os.system("dir")
+
 
