@@ -1,0 +1,15 @@
+import subprocess
+
+p= subprocess.Popen('ping 127.0.0.1', stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True,universal_newlines=True)
+#p.stdin.flush()
+#p.stdin.write('dir')
+#p.stdin.flush()
+#p.stdout.flush()
+stringg = p.stdout.read()
+print(stringg)
+p.stdin.write('ping www.baidu.com\n')
+p.stdin.flush()
+#p.stdin.flush()
+p.poll()
+stringg = p.stdout.read()
+print(stringg)
