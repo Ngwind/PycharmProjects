@@ -36,3 +36,12 @@ with open("test.json", 'r+') as f:  # 打开json文件
     dict_load = json.load(f)  # load函数读出json文件中的数据，并且转换成dict数据类型变量
     print(type(dict_load))  # 打印dict_load类型
     print(dict_load)  # 打印dict变量内容
+print("===================\n")
+
+test = input("输入json数据：")
+#test = '{"gameid":"1383532238264530","mno":"中国联通","devtype":"iPhone","screen":"375*667","appver":"0","nm":"0","cid":"0","os":"iOS","osid":"1","pt":"2","osver":"11.2.6","dev":"iPhone7,2","did":"3425F535-6F21-41CD-8321-97BF68909658","sdkver":"3.7.3.7","ip":"10.2.8.37","oid":"0","rectime":"1535357813","aid":"0"}'
+dict_1 = json.loads(test)
+for i in dict_1.items():
+    if i[0] in ["os","osver","screen"]:
+        print(i)
+
