@@ -11,12 +11,19 @@ hash函数对象有下列方法：
 m = hashlib.md5()  # 选择使用md5加密
 
 m.update("wuwenda".encode("utf-8"))
-print(m.hexdigest())
-m.update("123".encode("utf-8"))
-print(m.hexdigest())
-
+dig = m.digest()
+print(dig)
+print(type(dig))
+# m.update("123".encode("utf-8"))
+hdig = m.hexdigest()
+print(hdig)
+print(type(hdig))
+print()
 m1 = hashlib.md5()
 m1.update("wuwenda123".encode("utf-8"))   # 分开两次调用，和直接拼接调用，加密结果是一样的
 print(m1.hexdigest())
-
+m2 =hashlib.md5()
+m2.update("wuwenda".encode("utf-8"))
+m2.update("123".encode("utf-8"))
+print(m2.hexdigest())
 
