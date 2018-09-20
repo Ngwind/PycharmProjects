@@ -1,5 +1,4 @@
-from functools import reduce
-'''
+"""
 高阶函数练习
 编写高阶函数，就是让函数的参数能够接收别的函数。
 把函数作为参数传入，这样的函数称为高阶函数，函数式编程就是指这种高度抽象的编程范式。
@@ -8,7 +7,9 @@ from functools import reduce
 - reduce()
 - filter()
 - sorted()
-'''
+"""
+
+from functools import reduce
 
 # map()函数接收两个参数，一个是函数，一个是Iterable，map将传入的函数依次作用到序列的每个元素，并把结果作为新的Iterator返回。
 # 例如用map函数实现：把用户输入的不规范的英文名字，变为首字母大写，其他小写的规范名字。
@@ -22,7 +23,7 @@ print("map():\n", list(out_put))
 r_in_put = [1, 3, 5, 7, 9]
 
 
-def f(a,b):
+def f(a, b):
     return a*10+b
 
 
