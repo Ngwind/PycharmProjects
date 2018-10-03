@@ -8,7 +8,7 @@ print(os.name)
 
 #  查看环境变量。environ是一个mapping类型对象，保存了所有环境变量。
 print(os.environ)
-#例如使用environ["homepath"]查看主目录名称
+#  例如使用environ["homepath"]查看主目录名称
 print(os.environ['homepath'])
 print(os.environ['classpath'])
 
@@ -29,7 +29,7 @@ print(os.getcwd())
 #  3.chmod更改
 #  虽然Windows支持 chmod()，但只能使用它设置文件的只读标志（通过 stat.S_IWRITE 和 stat.S_IREAD 常量或相应的整数值）。所有其他位被忽略。
 os.chdir("../../../")
-# os.chmod(path, 775)
+os.chmod(path, 775)
 print(os.access(path, os.F_OK))
 print(os.access(path, os.R_OK))
 print(os.access(path, os.W_OK))
@@ -37,7 +37,7 @@ print(os.access(path, os.X_OK))
 
 #  chroot
 #  4.chown改变文件/文件夹的所有者/组
-#os.chown()
+#  os.chown()
 
 #  5.listdir展示path路径的文件
 print(os.listdir("./"))
@@ -55,11 +55,18 @@ os.rmdir("test_mkdir")
 #  9.removedirs递归删除空目录
 os.removedirs("./kkk/fff/cc")
 
-#  10.rename重命名文件
-#os.rename(path, "eee.py")
-
+#  10.removedirs递归删除空目录
+#  if not (os.path.exists("eee.py")):
+#    os.mkdir("eee.py")
+#  else:
+#    os.rename("eee.py", "ddd.py")
 #  system执行一个系统命令
-os.system("ipconfig")
-os.system("dir")
+#  os.system("ipconfig")
+#  os.system("dir")
 
+with os.scandir("./") as it:
+    for entry in it:
+        if not entry.name.startswith('.') and entry.is_file():
+            print(entry.name)
 
+print(os.system("ping www.baidu.com"))

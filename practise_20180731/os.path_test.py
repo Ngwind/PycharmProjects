@@ -3,6 +3,8 @@ import os.path
 import time
 
 #  os.path模块常用函数demo:
+#  演示用的路径
+path = "aaa/bbb/ccc/ddd.py"
 
 #  exists函数判断path是否存在
 print(os.path.exists(path))
@@ -44,3 +46,6 @@ print(os.path.commonpath(["/aaa/bbb", "/aaa/bbb/ccc"]))
 print(os.path.commonprefix(["/aaa/bbb", "/aaa/bbb/ccc"]))
 print(os.path.commonprefix([""]))
 print(os.path.commonprefix(["/aaa/bbc", "/aaa/bbb/ccc"]))
+
+
+

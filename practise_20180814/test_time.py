@@ -64,3 +64,6 @@ t10 = time.clock()  # 返回进程开始后的cpu运行时间
 print("返回进程开始后的cpu运行时间")
 print(t10)
 print(type(t10), "\n")
+
+
+
