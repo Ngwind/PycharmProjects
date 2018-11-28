@@ -1,5 +1,8 @@
 import os
 import subprocess
+
+s = '""'
+print(s)
 print("start")
 os.system("ping 104.128.92.157")
 p = subprocess.Popen("ping 104.128.92.157",stdout=subprocess.PIPE)

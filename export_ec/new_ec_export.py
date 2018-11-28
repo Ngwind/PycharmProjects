@@ -14,7 +14,7 @@ import time
 phone_id_dir = ""
 # 用户名
 user_name = "吴文达"
-
+__name__
 # 局域网映射地址
 net_file_location = "z:"
 
@@ -25,7 +25,7 @@ phone_file_location = "/sdcard/hago_coverage/1_6_8/"
 pc_file_location = "D:/Users/Administrator/Desktop/代码覆盖率"
 
 # 本次测试的模块
-test_model = "首页"
+test_model = "自由点击"
 
 # p1还是p2部分的用例
 m_part = "p1"
@@ -71,6 +71,9 @@ else:
     # 手机id号文件夹
     phone_id_dir = phone_id.split(sep='\t')[0].split(sep='\n')[1]
 
+if test_model == "monkey":
+    pass
+
 """
 =====================================================================
 手机连接成功，
@@ -111,7 +114,7 @@ else:
 
 # 开始传输ec文件--->本地文件夹
 print("开始传输ec文件--->本地文件夹")
-popen_pc = subprocess.Popen("adb pull "+phone_file_location+" "+pc_path, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+popen_pc = subprocess.Popen("adb pull "+phone_file_location+" "+'"'+pc_path+'"', stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
 returncode = popen_pc.poll()
 while returncode is None:
     line = popen_pc.stdout.readline().decode(encoding="gbk")
@@ -122,7 +125,7 @@ print("文件传输完成1")
 
 # 开始传输ec文件--->局域网date文件夹
 print("开始传输ec文件--->局域网date文件夹")
-popen_net_d = subprocess.Popen("adb pull " + phone_file_location + " " + net_date_path, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+popen_net_d = subprocess.Popen("adb pull " + phone_file_location + " " + '"'+net_date_path+'"', stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
 returncode = popen_net_d.poll()
 while returncode is None:
     line = popen_net_d.stdout.readline().decode(encoding="gbk")
@@ -133,7 +136,7 @@ print("文件传输完成2")
 
 # 开始传输ec文件--->局域网part文件夹
 print("开始传输ec文件--->局域网part文件夹")
-popen_net_p = subprocess.Popen("adb pull " + phone_file_location + " " + net_part_path, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+popen_net_p = subprocess.Popen("adb pull " + phone_file_location + " " + '"'+net_part_path+'"', stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
 returncode = popen_net_p.poll()
 while returncode is None:
     line = popen_net_p.stdout.readline().decode(encoding="gbk")
