@@ -1,11 +1,25 @@
 import getopt
 import sys
-import xlrd,xlwt
+import xlrd
+import re
 
-# 存放括号的列表
+# 存放各种括号的列表
 chars_config_list = [('{', '}'),
                      ('[', ']'),
                      ('(', ')')]
+
+
+def check_file_type(e_str):
+    """
+    检查文件名是否是xls和xlsx格式，返回True或者False
+    :param e_str: 文件名字符串
+    :return: 匹配则返回True，反之
+    """
+    p = re.compile("\.(xls|xlsx)$")
+    if re.search(p, e_str):
+        return True
+    else:
+        return False
 
 
 def check_char(chars_list, checked_str):
@@ -80,5 +94,6 @@ def main():
 
 
 if __name__ == "__main__":
+    # print(check_file_type(input("input file:")))
     main()
     pass
