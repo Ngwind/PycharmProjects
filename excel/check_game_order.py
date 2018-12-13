@@ -42,6 +42,28 @@ def check_char(chars_list, checked_str):
         return True
 
 
+def split_command(c_str: object):
+    """
+    把指令差分，使用正则表达式判断指令类型
+    分为三种指令：
+    1.逗号分隔型
+    2.to型
+    2.to加not型
+    :param c_str:待处理的指令
+    :return: 返回处理好的指令元组
+    """
+    p_1 = re.compile("^add_item(?:\s)+\{\{(?:\s)+(?P<items>\S+)(?:\s)+\}\}$")
+    p_2 = re.compile("^add_item(?:\s)+\{\{(?:\s)+(?P<start>\d+)(?:\s)+to(?:\s)+(?P<end>\d+)(?:\s)+\}\}$")
+    m_1 = re.match(p_1, c_str)
+    m_2 = re.match(p_2, c_str)
+    if m_2:
+        print("start:"+m_2.group("start"), "end:"+m_2.group("end"))
+    elif m_1:
+        print("items:"+m_1.group("items"))
+    else:
+        print("no pattern,error!")
+
+
 def report_error(sheet, row, col):
     """
     这个函数用来处理检查到单元格有错误之后要做的事
@@ -95,5 +117,6 @@ def main():
 
 if __name__ == "__main__":
     # print(check_file_type(input("input file:")))
-    main()
+    while True:
+        split_command(input("input test string:"))
     pass
